@@ -1,0 +1,187 @@
+body {
+	font-family: Helvetica, Arial, sans-serif;
+    color: #666;
+    padding: 40px;
+}
+.block { 
+	margin:0 auto;
+	text-align:left;
+}
+h1 {
+    margin-top: 0;
+}
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+li {
+    margin-bottom: 20px;
+    clear: both;
+}
+label {
+    font-size: 12px;
+    font-weight: bold; 
+    display: block;
+    margin-bottom: 3px;
+   	clear: both;
+}
+.element * {
+	padding:5px; 
+	margin:2px; 
+	font-family:arial;
+	font-size:12px;
+}
+.element label {
+	float:left; 
+	width:75px;
+	font-weight:700
+}
+.element input.text {
+	float:left; 
+	width:270px;
+	padding-left:20px;
+}
+.element .textarea {
+	height:120px; 
+	width:270px;
+	padding-left:20px;
+}
+.element .hightlight {
+	border:2px solid #9F1319;
+	background:url(/images/iconCaution.gif) no-repeat 2px
+}
+.element #submit {
+	float:right;
+	margin-right:10px;
+}
+.loading_blast {  
+	background:url(/images/ajax-loader.gif) no-repeat 1px; 
+	height:28px; 
+	width:28px; 
+	display:none;
+}
+.loading_search {  
+	background:url(/images/ajax-loader.gif) no-repeat 1px; 
+	height:28px; 
+	width:28px; 
+	display:none;
+}
+.done {
+	background:url(/images/iconIdea.gif) no-repeat 2px; 
+	padding-left:20px;
+	font-family:arial;
+	font-size:12px; 
+	width:70%; 
+	margin:20px auto; 
+	display:none
+}
+#bardivs {
+    width:1000px; /* or whatever the of the porgress bar is */
+    /* 
+       The position of #bardivs must be something other than
+       static (the default) so that its children will be positioned
+       relative to it.
+    */
+    position:relative;
+    height:20px;
+}
+#progresstext {
+    position:absolute;
+    top:10px;
+    left:500px;
+}
+#progressbar {
+    height:20px;
+}
+p {
+	font-size:12px; 
+}
+table {
+    *border-collapse: collapse; /* IE7 and lower */
+    border-spacing: 0;
+    width: 1000px;   
+	font-size:12px;  
+}
+
+textarea#clipboard { font-family: Courier, "Courier New", Verdana, Arial, monospace;}
+
+.ui-progressbar .ui-progressbar-value { background-image: url(/images/pbar-ani.gif); }
+/*----------------------*/
+
+.zebra td, .zebra th {
+    padding: 10px;
+    border-bottom: 1px solid #f2f2f2;    
+}
+
+.zebra tbody tr:nth-child(even) {
+    background: #f5f5f5;
+    -webkit-box-shadow: 0 1px 0 rgba(255,255,255,.8) inset; 
+    -moz-box-shadow:0 1px 0 rgba(255,255,255,.8) inset;  
+    box-shadow: 0 1px 0 rgba(255,255,255,.8) inset;        
+}
+
+.zebra th {
+    text-align: left;
+    text-shadow: 0 1px 0 rgba(255,255,255,.5); 
+    border-bottom: 1px solid #ccc;
+    background-color: #eee;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#f5f5f5), to(#eee));
+    background-image: -webkit-linear-gradient(top, #f5f5f5, #eee);
+    background-image:    -moz-linear-gradient(top, #f5f5f5, #eee);
+    background-image:     -ms-linear-gradient(top, #f5f5f5, #eee);
+    background-image:      -o-linear-gradient(top, #f5f5f5, #eee); 
+    background-image:         linear-gradient(top, #f5f5f5, #eee);
+}
+
+.zebra th:first-child {
+    -moz-border-radius: 6px 0 0 0;
+    -webkit-border-radius: 6px 0 0 0;
+    border-radius: 6px 0 0 0;  
+}
+
+.zebra th:last-child {
+    -moz-border-radius: 0 6px 0 0;
+    -webkit-border-radius: 0 6px 0 0;
+    border-radius: 0 6px 0 0;
+}
+
+.zebra th:only-child{
+    -moz-border-radius: 6px 6px 0 0;
+    -webkit-border-radius: 6px 6px 0 0;
+    border-radius: 6px 6px 0 0;
+}
+
+.zebra tfoot td {
+    border-bottom: 0;
+    border-top: 1px solid #fff;
+    background-color: #f1f1f1;  
+}
+
+.zebra tfoot td:first-child {
+    -moz-border-radius: 0 0 0 6px;
+    -webkit-border-radius: 0 0 0 6px;
+    border-radius: 0 0 0 6px;
+}
+
+.zebra tfoot td:last-child {
+    -moz-border-radius: 0 0 6px 0;
+    -webkit-border-radius: 0 0 6px 0;
+    border-radius: 0 0 6px 0;
+}
+
+.zebra tfoot td:only-child{
+    -moz-border-radius: 0 0 6px 6px;
+    -webkit-border-radius: 0 0 6px 6px
+    border-radius: 0 0 6px 6px
+}
+a {
+color:orange;
+text-decoration:none;
+
+}
+
+
+a:hover,a.active {
+color:#898989;
+}

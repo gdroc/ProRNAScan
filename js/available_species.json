@@ -1,0 +1,89 @@
+{
+    "Primates":[
+        {"id": "1","directory":"otolemur_garnettii","common_name": "Bushbaby","release":"73"},
+        {"id": "2","directory":"pan_troglodytes","common_name": "Chimpanzee","release":"73"},
+        {"id": "3","directory":"nomascus_leucogenys","common_name": "Gibbon","release":"73"},
+        {"id": "4","directory":"gorilla_gorilla","common_name": "Gorilla","release":"73"},
+        {"id": "5","directory":"homo_sapiens","common_name": "Human","release":"73"},
+        {"id": "6","directory":"macaca_mulatta","common_name": "Macaque","release":"73"},
+        {"id": "7","directory":"callithrix_jacchus","common_name": "Marmoset","release":"73"},
+        {"id": "8","directory":"microcebus_murinus","common_name": "Mouse Lemur","release":"73"},
+        {"id": "9","directory":"pongo_abelii","common_name": "Orangutan","release":"73"},
+        {"id": "10","directory":"tarsius_syrichta","common_name": "Tarsier","release":"73"}
+
+    ],
+    "Rodents etc.":[
+        {"id": "11","directory":"cavia_porcellus","common_name": "Guinea Pig","release":"73"},
+        {"id": "12","directory":"dipodomys_ordii","common_name": "Kangaroo Rat","release":"73"},
+        {"id": "13","directory":"mus_musculus","common_name": "Mouse","release":"73"},
+        {"id": "14","directory":"ochotona_princeps","common_name": "Pika","release":"73"},
+        {"id": "15","directory":"oryctolagus_cuniculus","common_name": "Rabbit","release":"73"},
+        {"id": "16","directory":"rattus_norvegicus","common_name": "Rat","release":"73"},
+        {"id": "17","directory":"spermophilus_tridecemlineatus","common_name": "Squirrel","release":"73"},
+        {"id": "18","directory":"tupaia_belangeri","common_name": "Tree Shrew","release":"73"}
+    ],
+	"Laurasiatheria":[
+        {"id": "19","directory":"vicugna_pacos","common_name": "Alpaca","release":"73"},
+		{"id": "20","directory":"felis_catus","common_name": "Cat","release":"73"},
+		{"id": "21","directory":"bos_taurus","common_name": "Cow","release":"73"},
+		{"id": "22","directory":"canis_familiaris","common_name": "Dog","release":"73"},
+		{"id": "23","directory":"tursiops_truncatus","common_name": "Dolphin","release":"73"},
+		{"id": "24","directory":"erinaceus_europaeus","common_name": "Hedgehog","release":"73"},
+		{"id": "25","directory":"equus_caballus","common_name": "Horse","release":"73"},
+		{"id": "26","directory":"pteropus_vampyrus","common_name": "Megabat","release":"73"},
+		{"id": "27","directory":"myotis_lucifugus","common_name": "Microbat","release":"73"},
+		{"id": "28","directory":"ailuropoda_melanoleuca","common_name": "Panda","release":"73"},
+		{"id": "29","directory":"sus_scrofa","common_name": "Pig","release":"73"},
+		{"id": "30","directory":"sorex_araneus","common_name": "Shrew","release":"73"}
+    ],
+	"Afrotheria":[
+        {"id": "31","directory":"loxodonta_africana","common_name": "Elephant","release":"73"},
+		{"id": "32","directory":"procavia_capensis","common_name": "Hyrax","release":"73"},
+		{"id": "33","directory":"echinops_telfairi","common_name": "Lesser hedgehog tenrec","release":"73"}
+    ],
+	"Xenarthra":[
+        {"id": "34","directory":"dasypus_novemcinctus","common_name": "Armadillo","release":"73"},
+		{"id": "35","directory":"choloepus_hoffmanni","common_name": "Sloth","release":"73"}
+    ],
+	"Other mammals":[
+        {"id": "36","directory":"monodelphis_domestica","common_name": "Opossum","release":"73"},
+		{"id": "37","directory":"ornithorhynchus_anatinus","common_name": "Platypus","release":"73"},
+		{"id": "38","directory":"sarcophilus_harrisii","common_name": "Tasmanian devil","release":"73"},
+		{"id": "39","directory":"macropus_eugenii","common_name": "Wallaby","release":"73"}
+    ],
+	"Birds & Reptiles":[
+        {"id": "40","directory":"anolis_carolinensis","common_name": "Anole lizard","release":"73"},
+		{"id": "41","directory":"gallus_gallus","common_name": "Chicken","release":"73"},
+		{"id": "42","directory":"meleagris_gallopavo","common_name": "Turkey","release":"73"},
+		{"id": "43","directory":"taeniopygia_guttata","common_name": "Zebra Finch","release":"73"}
+    ],
+	"Amphibians":[
+        {"id": "44","directory":"xenopus_tropicalis","common_name": "Xenopus","release":"73"}
+    ],
+	"Fish":[
+        {"id": "45","directory":"gadus_morhua","common_name": "Cod","release":"73"},
+		{"id": "46","directory":"latimeria_chalumnae","common_name": "Coelacanth","release":"73"},
+		{"id": "47","directory":"takifugu_rubripes","common_name": "Fugu","release":"73"},
+		{"id": "48","directory":"oryzias_latipes","common_name": "Medaka","release":"73"},
+		{"id": "49","directory":"gasterosteus_aculeatus","common_name": "Stickleback","release":"73"},
+		{"id": "50","directory":"tetraodon_nigroviridis","common_name": "Tetraodon","release":"73"},
+		{"id": "51","directory":"oreochromis_niloticus","common_name": "Tilapia","release":"73"},
+		{"id": "52","directory":"danio_rerio","common_name": "Zebrafish","release":"73"}
+    ],
+	"Other chordates":[
+        {"id": "53","directory":"ciona_intestinalis","common_name": "C.intestinalis","release":"73"},
+		{"id": "54","directory":"ciona_savignyi","common_name": "C.savignyi","release":"73"},
+		{"id": "55","directory":"petromyzon_marinus","common_name": "Lamprey","release":"73"}
+    ],
+	"Other eukaryotes":[
+        {"id": "56","directory":"caenorhabditis_elegans","common_name": "Caenorhabditis elegans","release":"73"},
+		{"id": "57","directory":"drosophila_melanogaster","common_name": "Fruitfly","release":"73"},
+		{"id": "58","directory":"saccharomyces_cerevisiae","common_name": "Saccharomyces cerevisiae","release":"73"}
+	],
+	"Plants":[
+        {"id": "59","directory":"oryza_sativa","common_name": "Oryza sativa","release":"13"},
+		{"id": "60","directory":"arabidopsis_thaliana","common_name": "Arabidopsis thaliana","release":"13"}
+	]
+}
+
+	

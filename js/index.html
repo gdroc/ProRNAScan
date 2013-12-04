@@ -1,0 +1,256 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>ProRNAscan : Processed RNA Scan</title>
+
+<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" href="http://static.jquery.com/ui/css/demo-docs-theme/ui.theme.css" type="text/css" media="all" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js" type="text/javascript"></script>
+<script type="text/javascript" language="javascript" src="js/jquery.dataTables.js"></script>
+<script src="js/jquery.uniform.js" type="text/javascript" charset="utf-8"></script>
+
+<link rel="stylesheet" href="css/uniform.default.css" type="text/css" media="screen">
+<link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
+<script type="text/javascript" charset="utf-8">
+$(function(){
+	$("input, textarea, select, button").uniform();
+});
+</script> 
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+
+
+
+var example = '>U6\n\
+GTGCTCGCTTCGGCAGCACATATACTAAAATTGGAACGATACAGAGAAGA\n\
+TTAGCATGGCCCCTGCGCAAGGATGACACGCAAATTCGTGAAGCGTTCCA\n\
+TATTTTT\n';
+
+
+
+//--><!]]>
+</script> 
+<script type="text/javascript">
+
+	      function sleep(delay) {
+	        var start = new Date().getTime();
+ while (new Date().getTime() < start + delay);
+}
+</script>
+<script type="text/javascript">
+	$(document).ready(function() { 
+		  $.ajax({
+        	type: "POST",
+        	url: "species.json",
+       		data: "{}", 
+        	dataType: "json",
+        	success: function(data) {
+           		var product = $('#species');
+				$.each(data, function (key, cat) {
+    				var group = $('<optgroup>',{label:key});
+    				$.each(cat,function(i,item) {
+        				$("<option/>",{value:item.directory,text:item.directory + " ( " + item.common_name + " release " +item.release + ")"}).appendTo(group);
+    				});
+    				group.appendTo( product );
+				});
+        	},
+        	error: function() {
+            	alert("Failed to load species");
+        	}
+    	}); 
+	    //if submit button is clicked 
+		$('#submit').click(function () {		 
+	    	var json_array = new Array();  
+	    	var json_not_array = '[';
+			var table_body_html = "<table class='zebra'><thead><tr><th>&nbsp;</th><th>Query Name</th><th>Query ID</th><th>Query Start</th><th>Query End</th><th>Hit Name</th><th>Hit Start</th><th>Hit End</th><th>Strand</th><th>Class</th><th>HSP Length</th><th>TSD Status</th></tr></thead><tbody>";
+
+			$('.loading_blast').show(); 
+			$('.blast').html("<p><b>Run Blast. Please wait....</b></p>");
+			$('.form1').fadeOut('slow'); 
+			$.ajax({
+				url: "/cgi-bin/blast.pl",	 
+				type: "POST", 		
+				data:$('#form').serialize()	,
+				dataType: 'json', 
+				success: function(data) {   
+					$('.loading_blast').fadeOut('slow');
+					$('.blast').fadeOut('slow');
+        			$("#progressbar").progressbar({ value: 0 }); 
+            		var num_total 		  = data.num_result;
+            		var num_result_total  = data.num_result_total;
+            		var num_result 		  = data.num_result;
+            		var database		  = data.database;
+            		var file_chr_length	  = data.file_chr_length;
+            		var file_svg		  = data.file_svg;
+            		var file_url_svg	  = data.file_url_svg;
+            		var abbrev  		  = data.abbrev;
+            		var gaps   			  = data.gaps;
+            		var output_dir 		  = data.output_dir;
+            		var width      		  = data.width;
+            		var result_dir 		  = data.result_dir;
+            		var query_length 	  = data.query_length;
+            		var query_name	 	  = data.query_name;
+            		var tsd_length 		  = data.tsd_length;
+            		var repeat_max_length = data.repeat_max_length;
+            		var species 		  = data.species;
+            		var species_rename 	  = data.species_rename;
+            		var release 		  = data.release;
+            		var min_identity 	  = data.min_identity;
+            		var hsp_length 		  = data.hsp_length
+            		var file_txt 		  = data.file_txt;
+            		var file_tsd_txt	  = data.file_tsd_txt;
+            		var file_fasta 		  = data.file_fasta;
+            		var file_xls 		  = data.file_xls;
+            		var file_url_txt 	  = data.file_url_txt;
+            		var file_url_fasta	  = data.file_url_fasta;
+            		var file_url_xls	  = data.file_url_xls;
+            		var file_url_tsd_txt  = data.file_url_tsd_txt;
+  					var cpt=0; 
+  					
+					$('.loading_search').show(); 
+					$('.search').html("<p><b>Search motif. Please wait....</b></p>");
+  					$.each(data.result , function(i, data) { 
+  						 
+  						$.ajax({
+							url: "/cgi-bin/search_motif.pl", 
+							data:"global="+ data +"&query_name="+ data.query_name + "&hit_name="+ data.hit_name + "&gaps=" +  data.gaps +"&abbrev="+  abbrev + "&percent_identity="+ data.percent_identity +"&hsp_start_hit="+  data.hsp_start_hit + "&hsp_end_hit="+data.hsp_end_hit + "&hsp_start_query="+ data.hsp_start_query + "&hsp_end_query="+ data.hsp_end_query + "&hsp_length="+ data.hsp_length + "&strand="+ data.strand + "&id="+ data.id + "&width="+ width + "&database="+ database + "&output_dir=" + output_dir+ "&result_dir=" + result_dir+ "&tsd_length=" + tsd_length+ "&query_length=" + query_length + "&repeat_max_length="+repeat_max_length +"&species="+species +"&file_txt=" + file_txt + "&file_tsd_txt="+ file_tsd_txt +"&file_fasta="+ file_fasta+ "&file_xls="+ file_xls+"&file_url_txt="+file_url_txt +"&file_url_fasta="+ file_url_fasta +"&file_url_xls="+ file_url_xls+ "&file_url_tsd_txt=" + file_url_tsd_txt ,
+							dataType: 'json',  
+							success: function(data){	
+								cpt++;
+                				var value = (cpt / num_total) * 100; 
+   								var int_value = Math.round(value);
+   								$("#progressbar").progressbar({ value: int_value }); 
+								$("#progresstext").html("<p><b>"+ cpt + "/" + num_total + "</b></p>");
+								json_array.push(data.result);
+								//json_not_array.push(data);
+								table_body_html += "<tr><td><b>"+ cpt +"</b></td><td>"+ query_name +"</td><td>"+ data.result.query_id +"</td><td>"+ data.result.query_start +"</td><td>"+ data.result.query_end +"</td><td>"+ data.result.hit_name +"</td><td>"+ data.result.hit_start +"</td><td>"+ data.result.hit_end +"</td><td>"+ data.result.strand +"</td><td>"+ data.result.class +"</td><td>"+ data.result.hsp_length +"</td><td>"+ data.result.tsd +"</td></tr>";
+ 								$("#table").html(table_body_html);	
+ 								if (cpt == num_total){
+									$('.loading_search').fadeOut('slow');
+									$('.search').fadeOut('slow');
+									$('.progressbar').fadeOut('slow');
+									$.ajax({
+										url: "/cgi-bin/write_result.pl", 
+										data:"file_chr_length="+file_chr_length+"&file_svg="+ file_svg+"&file_url_svg="+file_url_svg+"&species="+ species_rename + "&release="+ release + "&width="+width +"&num_hits="+num_result +"&num_hsps=" + num_result_total+ "&min_identity="+ min_identity+"&min_hsp_length="+hsp_length+"&file_txt=" + file_txt + "&file_tsd_txt="+ file_tsd_txt +"&file_fasta="+ file_fasta+ "&file_xls="+ file_xls+"&file_url_txt="+file_url_txt +"&file_url_fasta="+ file_url_fasta +"&file_url_xls="+ file_url_xls+ "&file_url_tsd_txt=" + file_url_tsd_txt,
+										dataType: 'json',  
+										success: function(data){	
+											$("<p><a href='index.html'><< Return to form</a></p>").appendTo("#param");
+											$("<p><b>Species</b> : "+ species_rename+"</p>").appendTo("#param");
+											$("<p><b>Release</b> : "+ release+"</p>").appendTo("#param"); 
+											$("<p><b>Number of hsps total</b> : "+ num_result_total + "</p><p><b>Number of hsps with at least " + min_identity + "% identity and " + hsp_length + " bp</b> : " + num_result + "</p>").appendTo("#param");
+											$("<p><b>Number of hsps with at least " + min_identity + "% identity and " + hsp_length + " bp and TSD Found : </b>" + data.count_tsd + "</p>").appendTo("#param");
+    			 							$("<p><a href='" + file_url_fasta +"' target='_blank'>Download result as fasta file</a></p>").appendTo("#param");
+    										if (data.To_Check) {
+    											$("<p><a href='" + data.To_Check +"' target='_blank'>Download result as fasta file (Only To Check)</a></p>").appendTo("#param");
+    										}
+    										if (data.Alone) {
+    											$("<p><a href='" + data.Alone +"' target='_blank'>Download result as fasta file (Only Alone)</a></p>").appendTo("#param");
+    										}
+    										if (data.Repeat) {
+    											$("<p><a href='" + data.Repeat +"' target='_blank'>Download result as fasta file (Only Repeat)</a></p>").appendTo("#param");
+    										}
+    										if (data.PolyA) {
+    											$("<p><a href='" + data.PolyA +"' target='_blank'>Download result as fasta file (Only PolyA)</a></p>").appendTo("#param");
+    										}
+    										if (data.truncated) {
+    											$("<p><a href='" + data.truncated +"' target='_blank'>Download result as fasta file (Only 3' truncated)</a></p>").appendTo("#param");
+    										} 
+    											$("<p><a href='" + file_url_svg +"' target='_blank'>View chromosome map</a></p>").appendTo("#param");
+    										 
+    										$("<p><a href='" + file_url_txt +"' target='_blank'>Download result as tab file</a></p>").appendTo("#param");
+        									$("<p><a href='" + file_url_tsd_txt +"' target='_blank'>Download result as tab file (Only TSD)</a></p>").appendTo("#param") ;
+        									$("<p><a href='" + file_url_xls +"' target='_blank'>Download result as Excel file</a></p>").appendTo("#param") ;
+        									table_body_html += "</tbody></table>";
+        									$("#table").html(table_body_html); 
+										},
+    									error: function (request, status, error) {
+        									alert("Problem : " + cpt + "  " + request.responseText);
+    									}
+
+									});	
+
+        						}	 
+			             	},
+                			error: function(request, status, error) {
+            					alert("Failed for search motif : " + request.responseText);
+        					},
+        					complete: function() {
+        					
+        						
+        							//console.log(JSON.stringify(json_array)); 
+        					}
+        					
+						});
+						
+            		}); // each()
+        		},
+        		
+        		error: function() {
+            		alert("Failed to load form1");
+        		}
+			});
+		 
+		//cancel the submit button default behaviours
+		
+		return false;
+	});	
+});	
+</script>
+ 
+</head>
+<body>
+<h1>ProRNAScan : Processed RNA Scan</h1> 
+<div class="loading_blast"></div><div class="blast"></div>
+<div class="loading_search"></div><div class="search"></div>
+<div class="form1">
+	<form id="form" method="post" name="form"   >
+    	<ul>
+        	<li>
+        		<label>Paste sequence in FASTA or plain text (<a  onclick="jQuery('#clipboard').val(example); return false;">load example</a>)</label>
+        		<textarea  name="clipboard" id="clipboard" cols="80" rows="5"></textarea>
+        	</li>
+    		<li>
+          		<label>Select the databases to search against</label>
+         		<select name="species" class="species" id="species"></select>        
+         	</li> 
+			<label><font color="orange">Filter</font></label>
+        	<li>
+        		<label>Min identity</label>
+        		<input type="text" name="min_identity" size="10" value="97.5" />
+        	</li> 
+     		<li>
+     			<label>TSD length</label>
+     			<input type="text" name="tsd_length" size="10" value="10" />
+     		</li> 
+     		<li>
+     			<label>Min HSP length</label>
+     			<input type="text" name="hsp_length" size="10" value="26" />
+     		</li> 
+      		<li>
+      			<label>Evalue</label>
+      			<input type="text" name="evalue" size="10" value="10" />
+      		</li> 
+			<label><font color="orange">Output Parameter</font></label>
+      		<li>
+      			<label>Set the line width for FASTA output</label>
+      			<input type="text" name="width" size="10" value="50" />
+      		</li> 
+        	<li> 
+          		<input type="submit" id="submit" />
+          		<input type="reset" />
+        	</li>
+      	</ul>
+    </form> 
+</div>
+<div id="param"></div>
+<div id="bardivs" class="progressbar">
+    <div id="progressbar"></div>
+    <div id="progresstext"></div>
+</div>
+<br />
+<div id="table"></div>
+</body>
+</html>
+
+
