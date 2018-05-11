@@ -1,5 +1,5 @@
 {
-	"file": "http://grass-genome-hub.cirad.fr/species.json",
+	"file": "https://raw.githubusercontent.com/gdroc/ProRNAScan/master/species.json",
 	"name": "BFF",
 	"header": 0,
 	"separator": " ",
